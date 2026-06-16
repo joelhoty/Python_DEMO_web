@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <h1>About</h1>
+    <p>This project is a beginner-friendly demo web application written in Python.</p>
+    <h2>Tech stack</h2>
+    <ul>
+        <li><strong>FastAPI</strong> – modern, fast web framework for building APIs with Python</li>
+        <li><strong>Jinja2</strong> – powerful templating engine for rendering HTML pages</li>
+        <li><strong>Uvicorn</strong> – lightning-fast ASGI server</li>
+    </ul>
+    <h2>Getting started</h2>
+    <ol>
+        <li>Install dependencies: <code>pip install -e .[dev]</code></li>
+        <li>Run the app: <code>uvicorn app.main:app --reload</code></li>
+        <li>Open <a href="http://localhost:8000">http://localhost:8000</a> in your browser</li>
+    </ol>
+</section>
+{% endblock %}

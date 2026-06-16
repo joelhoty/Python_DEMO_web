@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+app/__init__.py
+app/main.py
+python_demo_web.egg-info/PKG-INFO
+python_demo_web.egg-info/SOURCES.txt
+python_demo_web.egg-info/dependency_links.txt
+python_demo_web.egg-info/requires.txt
+python_demo_web.egg-info/top_level.txt
+tests/test_main.py
