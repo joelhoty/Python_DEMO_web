@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Protected Page — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>Protected Page</h1>
+
+<div class="info-panel">
+  <strong>Route:</strong> <code>GET /protected</code><br>
+  <strong>Concept:</strong>
+  This page requires a login cookie. If you are not logged in, the server
+  redirects you to <code>/login</code> before rendering this page.
+</div>
+
+<p>Welcome, <strong>{{ username }}</strong>! You are logged in.</p>
+
+<div class="what-happened">
+  <strong>How authentication works here:</strong>
+  <ol>
+    <li>When you logged in, FastAPI set a cookie named <code>teaching_user</code>
+        with your username as the value.</li>
+    <li>Your browser sends that cookie with every request to this site.</li>
+    <li>The <code>/protected</code> route reads <code>request.cookies.get("teaching_user")</code>.</li>
+    <li>If the cookie is missing, FastAPI redirects you to <code>/login</code>.</li>
+    <li><em>Teaching note:</em> a real app would use a signed session token or JWT,
+        not a raw username cookie.</li>
+  </ol>
+</div>
+
+<p>
+  <a href="/change-password">Change your password</a> |
+  <a href="/add-user">Create another user</a> |
+  <form method="post" action="/logout" style="display:inline">
+    <button type="submit" style="background:#c0392b">Logout</button>
+  </form>
+</p>
+{% endblock %}

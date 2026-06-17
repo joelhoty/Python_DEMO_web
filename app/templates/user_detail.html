@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}User {{ user.id if user else "Not Found" }} — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>User Lookup — Path Parameter Demo</h1>
+
+<div class="info-panel">
+  <strong>Route:</strong> <code>GET /users/{{ user_id }}</code><br>
+  <strong>Method:</strong> GET<br>
+  <strong>Concept:</strong> Path parameters are part of the URL itself (not after <code>?</code>).
+  FastAPI extracts the value from the URL path automatically.
+</div>
+
+{% if user %}
+  <h2>User found</h2>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>id</td><td>{{ user.id }}</td></tr>
+    <tr><td>username</td><td>{{ user.username }}</td></tr>
+    <tr><td>created_at</td><td>{{ user.created_at }}</td></tr>
+  </table>
+  <div class="what-happened">
+    <strong>What happened:</strong>
+    FastAPI extracted <code>{{ user_id }}</code> from the URL path.
+    The backend executed:
+    <code>SELECT * FROM users WHERE id = {{ user_id }}</code>
+    and returned the matching row.
+  </div>
+{% else %}
+  <p class="error">No user found with id <code>{{ user_id }}</code>.</p>
+  <div class="what-happened">
+    <strong>What happened:</strong>
+    The backend ran <code>SELECT * FROM users WHERE id = {{ user_id }}</code>
+    and got no rows. Try <a href="/register">registering a user</a> first.
+  </div>
+{% endif %}
+
+<p><a href="/database">← Database demo</a></p>
+{% endblock %}

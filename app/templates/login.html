@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Login — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>Login</h1>
+
+<div class="info-panel">
+  <strong>Route:</strong> <code>GET /login</code> / <code>POST /login</code><br>
+  <strong>Concept:</strong>
+  Login reads the username and password from the form body, fetches the stored hash
+  from SQLite, verifies the password with <code>secrets.compare_digest</code>,
+  and sets a teaching cookie to record the session.
+</div>
+
+{% if registered %}
+  <p class="success">Registration successful! Please log in.</p>
+{% endif %}
+
+{% if error %}
+  <p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="post" action="/login">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+  <label for="password" style="margin-top:0.8rem;">Password:</label>
+  <input type="password" id="password" name="password" required>
+  <button type="submit">Login</button>
+</form>
+
+<div class="what-happened">
+  <strong>What will happen when you submit:</strong>
+  <ol>
+    <li>FastAPI looks up the username in the database.</li>
+    <li>It calls <code>verify_password(password, stored_hash)</code>.</li>
+    <li>If the password matches, a cookie named <code>teaching_user</code> is set
+        with the username as its value.</li>
+    <li>This is a <em>teaching simplification</em> — production systems use
+        signed/encrypted session tokens, not raw usernames in cookies.</li>
+  </ol>
+</div>
+{% endblock %}

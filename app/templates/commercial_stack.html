@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Commercial Stack — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>Commercial Stack Overview</h1>
+
+<div class="info-panel">
+  <strong>Concept:</strong>
+  Real production websites are built from many specialised tools.
+  Here is how a typical frontend, backend, database, and server stack fits together.
+</div>
+
+<h2>Frontend (what runs in the browser)</h2>
+<table>
+  <tr><th>Technology</th><th>Role</th></tr>
+  <tr><td>React</td><td>JavaScript UI library from Meta — builds interactive component trees</td></tr>
+  <tr><td>Vue</td><td>Progressive JavaScript framework — easier learning curve than React</td></tr>
+  <tr><td>Angular</td><td>Full TypeScript framework from Google — opinionated, batteries-included</td></tr>
+  <tr><td>Next.js</td><td>React with server-side rendering and routing built in</td></tr>
+</table>
+
+<h2>Backend (what runs on the server)</h2>
+<table>
+  <tr><th>Technology</th><th>Role</th></tr>
+  <tr><td>FastAPI (Python)</td><td>Modern async Python framework — used by this demo site</td></tr>
+  <tr><td>Django (Python)</td><td>Full-stack Python framework with ORM, admin, and auth built in</td></tr>
+  <tr><td>Node.js / Express</td><td>JavaScript on the server — same language as the frontend</td></tr>
+  <tr><td>Ruby on Rails</td><td>Convention-over-configuration Ruby framework</td></tr>
+  <tr><td>Spring Boot (Java)</td><td>Enterprise Java framework with extensive ecosystem</td></tr>
+</table>
+
+<h2>Database (where data is stored)</h2>
+<table>
+  <tr><th>Technology</th><th>Role</th></tr>
+  <tr><td>PostgreSQL</td><td>Open-source relational database — common choice for production</td></tr>
+  <tr><td>MySQL / MariaDB</td><td>Another popular relational database</td></tr>
+  <tr><td>SQLite</td><td>File-based relational database — used by this demo for simplicity</td></tr>
+  <tr><td>MongoDB</td><td>Document-oriented (NoSQL) — stores JSON-like documents</td></tr>
+  <tr><td>Redis</td><td>In-memory key-value store — often used for caching or sessions</td></tr>
+</table>
+
+<h2>Servers &amp; Hosting</h2>
+<table>
+  <tr><th>Technology</th><th>Role</th></tr>
+  <tr><td>Nginx / Apache</td><td>Web server — handles static files and proxies to the backend</td></tr>
+  <tr><td>AWS / GCP / Azure</td><td>Cloud platforms — provide compute, storage, and managed services</td></tr>
+  <tr><td>Docker</td><td>Container runtime — packages the app and its dependencies together</td></tr>
+  <tr><td>Kubernetes</td><td>Container orchestration — scales and manages containers in production</td></tr>
+</table>
+
+<div class="what-happened">
+  <strong>How they fit together:</strong>
+  A user visits a React frontend, which calls a FastAPI backend, which reads from PostgreSQL.
+  Everything runs inside Docker containers on AWS.
+  This demo uses only FastAPI + SQLite to keep the setup simple and focus on core concepts.
+</div>
+{% endblock %}

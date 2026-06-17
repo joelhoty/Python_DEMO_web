@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Lesson Summary — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>Lesson Summary</h1>
+
+<p>
+  You have reached the end of the FastAPI Teaching Site lesson.
+  Here is a concise review of every concept you explored.
+</p>
+
+<h2>1. What a Backend Does</h2>
+<p>
+  A backend receives HTTP requests from the browser, reads or writes data in a
+  database, and returns an HTML page or JSON response.
+  FastAPI is the Python framework running this site.
+</p>
+
+<h2>2. GET — Variable Passing via URL</h2>
+<p>
+  <code>GET</code> sends variables in the <strong>URL query string</strong>
+  (e.g. <code>/search?q=fastapi</code> or <code>/methods/get-demo?message=hello</code>).
+  These values are visible in the address bar and can be bookmarked.
+  FastAPI reads them from function parameters declared as <code>q: str</code>.
+</p>
+<p>Path parameters (e.g. <code>/users/1</code>) are also GET variables — they appear
+inside the URL path rather than after <code>?</code>.</p>
+
+<h2>3. POST — Variable Passing via Request Body</h2>
+<p>
+  <code>POST</code> sends variables in the <strong>HTTP request body</strong>.
+  The URL does not change. FastAPI reads them using <code>Form(...)</code>, which
+  relies on the <code>python-multipart</code> library to parse browser form submissions.
+</p>
+
+<h2>4. HTML Forms</h2>
+<p>
+  An HTML <code>&lt;form method="post"&gt;</code> collects values in input fields and
+  submits them as POST data. A <code>&lt;form method="get"&gt;</code> appends them to
+  the URL. The <code>action</code> attribute sets which route receives the data.
+</p>
+
+<h2>5. SQLite Database with <code>sqlite3</code></h2>
+<p>
+  User records are stored in a SQLite file (<code>teaching.db</code>) using Python's
+  built-in <code>sqlite3</code> module — no ORM, no separate database server.
+  The <code>users</code> table has <code>id</code>, <code>username</code>,
+  <code>password_hash</code>, and <code>created_at</code> columns.
+  All queries use <code>?</code> placeholders to prevent SQL injection.
+</p>
+
+<h2>6. Password Hashing</h2>
+<p>
+  Passwords are never stored as plaintext.
+  <code>hashlib.pbkdf2_hmac("sha256", password, salt, 260_000)</code> produces a
+  hash; a random salt from <code>secrets.token_hex(16)</code> is prepended.
+  The stored string is <code>salt$hash_hex</code>.
+  Verification uses <code>secrets.compare_digest</code> to prevent timing attacks.
+</p>
+
+<h2>7. Login State — Teaching Cookie</h2>
+<p>
+  After a successful login, FastAPI sets an HTTP-only cookie named
+  <code>teaching_user</code> with the username as the value.
+  Protected routes read <code>request.cookies.get("teaching_user")</code>; if
+  absent, the user is redirected to <code>/login</code>.
+  <em>This is a teaching simplification</em> — production apps use signed session
+  tokens or JWTs, not raw username cookies.
+</p>
+
+<h2>8. Password Change</h2>
+<p>
+  The change-password route verifies the <em>current</em> password before accepting
+  a new one. If the current password is wrong, the stored hash is unchanged.
+  If correct, a new hash is generated and saved.
+</p>
+
+<h2>9. Logged-in User Creation</h2>
+<p>
+  The add-user route creates another account, but only when the requester is already
+  logged in. Anonymous requests are redirected to <code>/login</code>.
+  This pattern is common in admin dashboards.
+</p>
+
+<h2>10. Commercial Stack</h2>
+<p>
+  Real production systems combine a JavaScript frontend (React, Vue, Angular),
+  a backend API (FastAPI, Django, Node/Express), a database
+  (PostgreSQL, MySQL, MongoDB), and a hosting platform (AWS, GCP, Azure) with
+  a reverse proxy (Nginx) and container runtime (Docker/Kubernetes).
+  This demo uses only FastAPI + SQLite to keep the setup learner-friendly.
+</p>
+
+<div class="what-happened">
+  <strong>Full browser-to-backend-to-database flow (register example):</strong>
+  <ol>
+    <li>Browser submits <code>POST /register</code> with form body <code>username=alice&amp;password=secret</code>.</li>
+    <li>FastAPI reads the fields using <code>Form(...)</code>.</li>
+    <li><code>hash_password("secret")</code> generates <code>salt$pbkdf2_hash</code>.</li>
+    <li><code>database.create_user("alice", hashed)</code> runs <code>INSERT INTO users ...</code>.</li>
+    <li>FastAPI returns a <code>303 Redirect</code> to <code>/login</code>.</li>
+    <li>Browser follows the redirect and renders the login page.</li>
+  </ol>
+</div>
+
+<p><a href="/">← Back to Home</a></p>
+{% endblock %}

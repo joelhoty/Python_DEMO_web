@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Search Demo — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>Search Demo — Query Parameters</h1>
+
+<div class="info-panel">
+  <strong>Route:</strong> <code>GET /search?q={{ q }}</code><br>
+  <strong>Method:</strong> GET<br>
+  <strong>Concept:</strong> Query parameters appear after <code>?</code> in the URL.
+  FastAPI reads them automatically from the function signature.
+</div>
+
+<form method="get" action="/search">
+  <label for="q">Search:</label>
+  <input type="text" id="q" name="q" value="{{ q }}">
+  <button type="submit">Search</button>
+</form>
+
+{% if q %}
+<p><strong>You searched for:</strong> <code>{{ q }}</code></p>
+<div class="what-happened">
+  <strong>What happened:</strong>
+  Your browser appended <code>?q={{ q }}</code> to the URL.
+  FastAPI received it as the <code>q</code> query parameter.
+  The backend function declares <code>q: str</code> and FastAPI fills it in automatically.
+</div>
+{% endif %}
+{% endblock %}

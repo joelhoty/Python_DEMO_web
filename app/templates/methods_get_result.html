@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}GET Result — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>GET Demo Result</h1>
+
+<div class="info-panel">
+  <strong>Route:</strong> <code>GET /methods/get-demo?message={{ message }}</code><br>
+  <strong>Method:</strong> GET<br>
+  <strong>Where did the value come from?</strong>
+  The browser added <code>?message={{ message }}</code> to the URL.
+  FastAPI read it as a <em>query parameter</em>.
+</div>
+
+<p><strong>Your message:</strong> <code>{{ message }}</code></p>
+
+<div class="what-happened">
+  <strong>What happened:</strong>
+  When you submitted the GET form, your browser appended
+  <code>?message={{ message }}</code> to the URL.
+  The server received the value from the <strong>URL query string</strong> — not the request body.
+  You can bookmark this URL and it will always show the same value.
+</div>
+
+<p><a href="/methods">← Back to GET vs POST</a></p>
+{% endblock %}
