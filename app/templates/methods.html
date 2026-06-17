@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}GET vs POST — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>GET vs POST Comparison</h1>
+
+<div class="info-panel">
+  <strong>Route:</strong> <code>GET /methods</code><br>
+  <strong>Concept:</strong> HTTP has multiple <em>methods</em> (or verbs).
+  <strong>GET</strong> sends variables in the URL (visible in the address bar).
+  <strong>POST</strong> sends variables in the request body (not visible in the URL).
+</div>
+
+<h2>Try GET</h2>
+<p>Type a message. When you submit, watch the URL bar — your message will appear after <code>?message=</code>.</p>
+<form method="get" action="/methods/get-demo">
+  <label for="get_msg">Message (GET):</label>
+  <input type="text" id="get_msg" name="message" placeholder="hello">
+  <button type="submit">Send via GET</button>
+</form>
+
+<h2>Try POST</h2>
+<p>Type a message. When you submit, the URL will stay the same — no value visible in the address bar.</p>
+<form method="post" action="/methods/post-demo">
+  <label for="post_msg">Message (POST):</label>
+  <input type="text" id="post_msg" name="message" placeholder="world">
+  <button type="submit">Send via POST</button>
+</form>
+
+<div class="what-happened">
+  <strong>Key differences:</strong>
+  <table>
+    <tr><th></th><th>GET</th><th>POST</th></tr>
+    <tr><td>Variables go in</td><td>URL query string</td><td>Request body</td></tr>
+    <tr><td>Visible in address bar?</td><td>Yes</td><td>No</td></tr>
+    <tr><td>Good for</td><td>Reading data, links, bookmarks</td><td>Submitting forms, writing data</td></tr>
+    <tr><td>Repeatable safely?</td><td>Yes</td><td>Not always (double-submit risk)</td></tr>
+  </table>
+</div>
+{% endblock %}

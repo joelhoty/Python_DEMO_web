@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Database Demo — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>Database Demo — SQLite with Python</h1>
+
+<div class="info-panel">
+  <strong>Route:</strong> <code>GET /database</code><br>
+  <strong>Concept:</strong>
+  This site stores users in a <strong>SQLite</strong> database.
+  SQLite is a file-based relational database that requires no separate server.
+  Python's standard-library <code>sqlite3</code> module is used — no ORM needed.
+</div>
+
+<h2>How the users table is created</h2>
+<pre><code>CREATE TABLE IF NOT EXISTS users (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    username     TEXT    NOT NULL UNIQUE,
+    password_hash TEXT   NOT NULL,
+    created_at   TEXT    NOT NULL
+);</code></pre>
+
+<h2>Try it: look up a user by ID</h2>
+<form method="get" action="/users/1">
+  <label for="uid">User ID:</label>
+  <input type="text" id="uid" name="uid" value="1" style="max-width:80px">
+  <button type="submit" onclick="this.form.action='/users/'+document.getElementById('uid').value; return true;">Look up</button>
+</form>
+
+<h2>Register a user first</h2>
+<p>
+  Use the <a href="/register">Register page</a> to create a user,
+  then come back here to look them up by ID.
+</p>
+
+<div class="what-happened">
+  <strong>What Python does:</strong>
+  <ol>
+    <li>Open a connection to <code>teaching.db</code> (the SQLite file).</li>
+    <li>Execute a parameterized SQL query with <code>?</code> placeholders — never string formatting (SQL injection risk).</li>
+    <li>Return the row as a <code>sqlite3.Row</code> object.</li>
+    <li>Close the connection.</li>
+  </ol>
+</div>
+{% endblock %}

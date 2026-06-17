@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Home — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>FastAPI Teaching Site</h1>
+<p>
+  This site demonstrates core backend and web concepts through working examples.
+  Use the navigation above to explore each concept.
+</p>
+<ul>
+  <li><a href="/methods">GET vs POST comparison</a> — send values both ways and compare</li>
+  <li><a href="/form">Form demo</a> — HTML form submission with POST</li>
+  <li><a href="/search?q=hello">Search demo</a> — query parameters via GET</li>
+  <li><a href="/database">Database demo</a> — SQLite user table operations</li>
+  <li><a href="/register">Register</a> — create an account with a hashed password</li>
+  <li><a href="/login">Login</a> — teaching-cookie session</li>
+  <li><a href="/protected">Protected page</a> — requires login</li>
+  <li><a href="/change-password">Change password</a> — requires login</li>
+  <li><a href="/add-user">Add user</a> — create a user while logged in</li>
+  <li><a href="/commercial-stack">Commercial stack</a> — how real systems fit together</li>
+  <li><a href="/summary">Summary</a> — review the full lesson</li>
+</ul>
+<div class="info-panel">
+  <strong>What a backend does:</strong>
+  A backend receives HTTP requests from your browser, reads or writes data
+  (usually in a database), and returns an HTML page or JSON response.
+  FastAPI is the backend framework running this site.
+</div>
+{% endblock %}

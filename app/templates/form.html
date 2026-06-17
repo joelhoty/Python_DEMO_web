@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Form Demo — FastAPI Teaching Site{% endblock %}
+{% block content %}
+<h1>Form Demo — POST Form Data</h1>
+
+<div class="info-panel">
+  <strong>Route:</strong> <code>GET /form</code><br>
+  <strong>Concept:</strong> HTML forms collect user input.
+  When the form uses <code>method="post"</code>, the browser sends field values
+  in the request body — not in the URL.
+</div>
+
+<form method="post" action="/form">
+  <label for="name">Your name:</label>
+  <input type="text" id="name" name="name" placeholder="Alice">
+  <label for="message" style="margin-top:0.8rem;">Your message:</label>
+  <input type="text" id="message" name="message" placeholder="Hello FastAPI">
+  <button type="submit">Submit Form</button>
+</form>
+
+<div class="what-happened">
+  <strong>Before submitting:</strong>
+  When you click Submit, your browser will send a POST request to <code>/form</code>
+  with the field values in the request body. FastAPI uses
+  <code>python-multipart</code> to parse those fields.
+</div>
+{% endblock %}

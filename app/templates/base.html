@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}FastAPI Teaching Site{% endblock %}</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a> |
+    <a href="/methods">GET vs POST</a> |
+    <a href="/form">Form Demo</a> |
+    <a href="/database">Database</a> |
+    <a href="/register">Register</a> |
+    <a href="/login">Login</a> |
+    <a href="/protected">Protected</a> |
+    <a href="/commercial-stack">Commercial Stack</a> |
+    <a href="/summary">Summary</a>
+  </nav>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <p>FastAPI Teaching Site — for learning only</p>
+  </footer>
+</body>
+</html>
