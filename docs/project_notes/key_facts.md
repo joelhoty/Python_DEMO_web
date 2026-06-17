@@ -110,3 +110,18 @@ change: create-fastapi-teaching-site
 - README includes the concrete `username = "alice"` example with params `("alice",)` and explains why SQL does not become `('alice',)`.
 - README explains that one-item tuples require the trailing comma: `(username,)`.
 - README clarifies `salt$hash_hex` is this demo's storage format for a salted password hash, not encryption and not a special standard term.
+
+---
+id: fact-007
+timestamp: 2026-06-17 17:16
+type: fact
+tags: [git, github, branches]
+component: repository-management
+source: git
+---
+
+## Fact-007: Canonical Branch Is Main
+
+- Repository branch policy is consolidated to `main`.
+- Extra local and GitHub branches were removed after preserving the latest teaching-site work on `main`.
+- `origin/HEAD` should resolve to `origin/main`.

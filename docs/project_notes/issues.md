@@ -40,3 +40,21 @@ change: create-fastapi-teaching-site
 - Clarified password storage wording: `salt$hash_hex` is a salted hash storage format, not encryption.
 - Corrected development dependency metadata from `httpx2` to `httpx` in `pyproject.toml` and regenerated `uv.lock`.
 - Verified with `uv run pytest`: 39 tests passed.
+
+---
+id: issue-003
+timestamp: 2026-06-17 17:16
+type: issue
+tags: [git, github, branches, maintenance]
+severity: low
+component: repository-management
+status: resolved
+source: git
+---
+
+## Issue-003: Consolidate repository onto main only
+
+- Synced remote refs from GitHub and audited branch divergence before cleanup.
+- Confirmed `feat/create-fastapi-teaching-site` contained the latest teaching-site work not yet reflected on `origin/main`.
+- Repointed local and remote `main` to the latest teaching-site commit so the work is preserved on the canonical branch.
+- Removed extra local and remote branches to leave `main` as the only remaining branch.
