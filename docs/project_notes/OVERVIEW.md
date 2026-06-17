@@ -1,6 +1,6 @@
 # Project Overview
 
-Generated from `docs/project_notes/` on 2026-06-16 17:49.
+Generated from `docs/project_notes/` on 2026-06-17 17:16.
 
 ## 發展時間軸
 
@@ -18,6 +18,8 @@ Generated from `docs/project_notes/` on 2026-06-16 17:49.
 - 2026-06-16 17:39 — `issue-002`: README expanded and dependency metadata corrected.
 - 2026-06-16 17:49 — `research-002`: README teaching explanations refined for FastAPI/Uvicorn, SQLite placeholders, tuple syntax, and salted password hashes.
 - 2026-06-16 17:49 — `fact-006`: README now includes concrete beginner examples for request serving layers, SQL parameter binding, and password hash storage format.
+- 2026-06-17 17:16 — `issue-003`: Repository branches consolidated so only `main` remains.
+- 2026-06-17 17:16 — `fact-007`: Canonical repository branch is now `main`.
 
 ## 核心設計決策
 
@@ -35,7 +37,7 @@ Generated from `docs/project_notes/` on 2026-06-16 17:49.
 
 ## 進行中工作
 
-- No active work logged. Current implementation and README are verified.
+- No active work logged. Current implementation is preserved on `main` and extra branches have been removed.
 
 ## 未解決研究問題
 
@@ -56,3 +58,4 @@ Generated from `docs/project_notes/` on 2026-06-16 17:49.
 - Test status: `uv run pytest` passes 39 tests
 - README status: expanded Chinese teaching README aligned with `plan.md`
 - README explanation additions: FastAPI/Uvicorn hierarchy, SQL `?` placeholder binding, one-item tuple syntax, `alice` query example, and `salt$hash_hex` as hash storage format
+- Canonical branch: `main`
